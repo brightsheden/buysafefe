@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { profile, userbalance } from '../../state/Actions/UserActions';
 import { myLinks } from '../../state/Actions/OrderActions';
-import { FaCopy, FaExternalLinkAlt, FaPlus, FaWallet, FaClock, FaDollarSign } from 'react-icons/fa';
+import { FaCopy, FaExternalLinkAlt, FaPlus, FaWallet, FaClock, FaDollarSign, FaMinusCircle } from 'react-icons/fa';
 import { Button, Card, Typography, IconButton } from '@material-tailwind/react';
+import { FaCreditCard, FaMinus } from 'react-icons/fa6';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -74,15 +75,38 @@ const Dashboard = () => {
         ))}
       </div>
 
-      <div className="flex justify-between items-center my-6">
-        <Typography variant="h2" className="text-xl font-semibold text-gray-800">
-          Recent Transactions
-        </Typography>
-        <Link to='/createlink'>
+      <div className=''>
+        <h2 className='my-4 text-xl font-semibold'>Quick Links</h2>
+<div className='flex gap-4  flex-col md:flex-row'>
+<Link to='/createlink'>
           <Button className="flex items-center gap-2">
             <FaPlus className="h-4 w-4" /> Create New Link
           </Button>
         </Link>
+
+        <Link  to={'/withdraw'}>
+        <Button className='flex items-center gap-2'>
+        <FaMinusCircle className="h-4 w-4"  /> Withdraw
+        </Button>
+        
+        </Link>
+
+        <Link  to={'/mywithdrawals'}>
+        <Button className='flex items-center gap-2'>
+        <FaCreditCard className="h-4 w-4"  /> Withdrawal List
+        </Button>
+        
+        </Link>
+      
+</div>
+      
+      </div>
+
+      <div className="flex justify-between items-center my-6">
+        <Typography variant="h2" className="text-xl font-semibold text-gray-800">
+          Recent Transactions
+        </Typography>
+      
       </div>
 
       <Card className="w-full overflow-hidden">
