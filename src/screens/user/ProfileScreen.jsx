@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { profile, userbalance } from '../../state/Actions/UserActions';
 import { myLinks } from '../../state/Actions/OrderActions';
-import { FaCopy, FaExternalLinkAlt, FaPlus, FaWallet, FaClock, FaDollarSign, FaMinusCircle } from 'react-icons/fa';
+import { FaCopy, FaExternalLinkAlt, FaPlus, FaWallet, FaClock, FaDollarSign, FaMinusCircle, FaUserAstronaut } from 'react-icons/fa';
 import { Button, Card, Typography, IconButton } from '@material-tailwind/react';
 import { FaCreditCard, FaMinus } from 'react-icons/fa6';
+import { resetUserState } from '../../state/Slice/AuthSlice';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,11 @@ const Dashboard = () => {
 
   const user = useSelector((state) => state.user);
   const { userInfo } = user;
+
+
+  const handleLogout = () => {
+    dispatch(resetUserState());
+  }
 
   const [copySuccess, setCopySuccess] = useState(false);
 
@@ -51,15 +57,22 @@ const Dashboard = () => {
         </div>
       )}
 
-      <Typography variant="h1" className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
+        <div className='flex flex-col md:flex-row justify-between'>
+        <Typography variant="h1" className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
         Welcome back, {userProfile?.name}
       </Typography>
+
+      <Button onClick={handleLogout}>Logout</Button>
+
+        </div>
+      
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
           { title: 'Available Balance', icon: FaWallet, amount: data?.available_balance },
           { title: 'Pending Balance', icon: FaClock, amount: data?.pending_balance },
           { title: 'Total Withdrawn', icon: FaDollarSign, amount: data?.payout },
+          { title: 'Pending Withdrawal', icon: FaDollarSign, amount: data?.pending_withdrawal },
         ].map((item, index) => (
           <Card key={index} className="p-4">
             <div className="flex items-center justify-between mb-2">
@@ -97,6 +110,15 @@ const Dashboard = () => {
         </Button>
         
         </Link>
+
+        {userInfo.isAdmin && (
+              <Link  to={'/admin'}>
+              <Button className='flex items-center gap-2'>
+              <FaUserAstronaut className="h-4 w-4"  /> admin
+              </Button>
+              
+              </Link>
+        )}
       
 </div>
       

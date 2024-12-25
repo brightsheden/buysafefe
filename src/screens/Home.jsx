@@ -1,5 +1,6 @@
 import React from 'react';
 import { Shield, Zap,  DollarSign, Scale, ChevronRight, Phone, Mail, MapPin, Facebook, Twitter, Instagram, FacebookIcon, Mic } from 'lucide-react';
+import {Link }from 'react-router-dom';
 
 const LandingPage = () => {
   return (
@@ -16,9 +17,9 @@ const LandingPage = () => {
                 Effortlessly connect and transact with PaySecure, the safest P2P payment platform designed for buyers and sellers. With us, your payment is always protected—so you can trade with peace of mind.
               </p>
               <div className="space-x-4">
-                <button className="bg-orange-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-700 transition">
+                <Link to='/register' className="bg-orange-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-700 transition">
                   Get Started
-                </button>
+                </Link>
                 <button className="border-2 border-orange-600 text-orange-600 px-8 py-3 rounded-full font-semibold hover:bg-orange-50 transition">
                   Learn More
                 </button>
